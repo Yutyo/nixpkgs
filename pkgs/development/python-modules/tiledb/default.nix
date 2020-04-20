@@ -13,14 +13,14 @@
 
 buildPythonPackage rec {
   pname = "tiledb";
-  version = "0.5.2";
+  version = "0.5.6";
   format = "setuptools";
 
   src = fetchFromGitHub {
     owner = "TileDB-Inc";
     repo = "TileDB-Py";
     rev = version;
-    sha256 = "0y7llvy943fviayjny8xybvn3sm1ikjvazqk172ls90lcpr8rlr1";
+    sha256 = "0cgm4dhyqay26xmrzlv21ha8qh55m4q3yr338lrv81ngz77zxsvw";
   };
 
   nativeBuildInputs = [
@@ -65,7 +65,7 @@ buildPythonPackage rec {
 
   meta = with lib; {
     description = "Python interface to the TileDB storage manager";
-    homepage = https://github.com/TileDB-Inc/TileDB-Py;
+    homepage = "https://github.com/TileDB-Inc/TileDB-Py";
     license = licenses.mit;
     maintainers = with maintainers; [ fridh ];
   };

@@ -4,13 +4,13 @@
 
 stdenv.mkDerivation rec {
   pname = "xsecurelock";
-  version = "1.6.0";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "google";
     repo = "xsecurelock";
     rev = "v${version}";
-    sha256 = "0zdwszscdw0p7kwpqqv1dywn00bq1wak2x602lb6hdmkffspi8bg";
+    sha256 = "020y2mi4sshc5dghcz37aj5wwizbg6712rzq2a72f8z8m7mnxr5y";
   };
 
   nativeBuildInputs = [
@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "X11 screen lock utility with security in mind";
-    homepage = https://github.com/google/xsecurelock;
+    homepage = "https://github.com/google/xsecurelock";
     license = licenses.asl20;
     maintainers = with maintainers; [ fpletz ];
     platforms = platforms.unix;

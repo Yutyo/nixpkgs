@@ -18,14 +18,14 @@ in
 
 stdenv.mkDerivation rec {
   pname = "simgrid";
-  version = "3.24";
+  version = "3.25";
 
   src = fetchFromGitLab {
     domain = "framagit.org";
     owner = pname;
     repo = pname;
     rev = "v${version}";
-    sha256 = "1r9zgfx5npjw4mk0ywxx07jyi1m1b1i06j0m60n3dsrz75492x6m";
+    sha256 = "019fgryfwpcrkv1f3271v7qxk0mfw2w990vgnk1cqhmr9i1f17gs";
   };
 
   nativeBuildInputs = [ cmake perl python3 boost valgrind ]
@@ -104,7 +104,7 @@ stdenv.mkDerivation rec {
       scheduling on distributed computing platforms ranging from simple
       network of workstations to Computational Grids.
     '';
-    homepage = https://simgrid.org/;
+    homepage = "https://simgrid.org/";
     license = licenses.lgpl2Plus;
     maintainers = with maintainers; [ mickours mpoquet ];
     platforms = ["x86_64-linux"];

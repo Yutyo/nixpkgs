@@ -40,6 +40,7 @@ stdenv.mkDerivation rec {
     "-Wno-format-overflow"
     "-Wno-error=tautological-compare"
     "-Wno-error=array-bounds"
+    "-Wno-error=cpp"
   ]);
 
   postInstall = lib.optionalString stdenv.isLinux ''
@@ -63,7 +64,7 @@ stdenv.mkDerivation rec {
       "remote target" for source-level debugging of embedded systems using the
       GNU GDB program.
     '';
-    homepage = http://openocd.sourceforge.net/;
+    homepage = "http://openocd.sourceforge.net/";
     license = licenses.gpl2Plus;
     maintainers = with maintainers; [ bjornfor ];
     platforms = platforms.unix;

@@ -13,13 +13,13 @@ with stdenv.lib;
 
 stdenv.mkDerivation rec {
   pname = "remmina";
-  version = "1.3.8";
+  version = "1.4.1";
 
   src = fetchFromGitLab {
     owner  = "Remmina";
     repo   = "Remmina";
     rev    = "v${version}";
-    sha256 = "017bm43d56clgray7sjvb00wpchr4zazc9ll0cd5wimirm12cxba";
+    sha256 = "084yw0fd3qmzzd6xinhf4plv5bg8gfj4jnfac7zi1nif8zilf456";
   };
 
   nativeBuildInputs = [ cmake ninja pkgconfig wrapGAppsHook ];
@@ -52,7 +52,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     license = licenses.gpl2;
-    homepage = https://gitlab.com/Remmina/Remmina;
+    homepage = "https://gitlab.com/Remmina/Remmina";
     description = "Remote desktop client written in GTK";
     maintainers = with maintainers; [ melsigl ryantm ];
     platforms = platforms.linux;

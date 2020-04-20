@@ -164,7 +164,7 @@ stdenv.mkDerivation {
 
   setOutputFlags = false;
   preConfigure = ''
-    export LD_LIBRARY_PATH="$PWD/lib:$PWD/plugins/platforms:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$PWD/lib:$PWD/plugins/platforms''${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
     ${lib.optionalString (compareVersion "5.9.0" < 0) ''
     # We need to set LD to CXX or otherwise we get nasty compile errors
     export LD=$CXX
@@ -399,7 +399,7 @@ stdenv.mkDerivation {
   setupHook = ../hooks/qtbase-setup-hook.sh;
 
   meta = with lib; {
-    homepage = http://www.qt.io;
+    homepage = "http://www.qt.io";
     description = "A cross-platform application framework for C++";
     license = with licenses; [ fdl13 gpl2 lgpl21 lgpl3 ];
     maintainers = with maintainers; [ qknight ttuegel periklis bkchr ];

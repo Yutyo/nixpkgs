@@ -88,7 +88,6 @@ self: super: let
 in {
   stdenv = foldl (flip id) super.stdenv staticAdapters;
   gcc49Stdenv = foldl (flip id) super.gcc49Stdenv staticAdapters;
-  gcc5Stdenv = foldl (flip id) super.gcc5Stdenv staticAdapters;
   gcc6Stdenv = foldl (flip id) super.gcc6Stdenv staticAdapters;
   gcc7Stdenv = foldl (flip id) super.gcc7Stdenv staticAdapters;
   gcc8Stdenv = foldl (flip id) super.gcc8Stdenv staticAdapters;
@@ -143,6 +142,9 @@ in {
     static = true;
     shared = false;
   };
+  fmt = super.fmt.override {
+    enableShared = false;
+  };
   gifsicle = super.gifsicle.override {
     static = true;
   };
@@ -152,16 +154,19 @@ in {
   optipng = super.optipng.override {
     static = true;
   };
-  openblas = super.openblas.override { enableStatic = true; };
+  openblas = super.openblas.override {
+    enableStatic = true;
+    enableShared = false;
+  };
   mkl = super.mkl.override { enableStatic = true; };
   nix = super.nix.override { withAWS = false; };
-  # openssl 1.1 doesn't compile
-  openssl = super.openssl_1_0_2.override {
-    static = true;
-
-    # Don’t use new stdenv for openssl because it doesn’t like the
-    # --disable-shared flag
-    stdenv = super.stdenv;
+  openssl = (super.openssl_1_1.override { static = true; }).overrideAttrs (o: {
+    # OpenSSL doesn't like the `--enable-static` / `--disable-shared` flags.
+    configureFlags = (removeUnknownConfigureFlags o.configureFlags);
+  });
+  arrow-cpp = super.arrow-cpp.override {
+    enableShared = false;
+    python = { pkgs = { python = null; numpy = null; }; };
   };
   boost = super.boost.override {
     enableStatic = true;
@@ -171,8 +176,15 @@ in {
     # --disable-shared flag
     stdenv = super.stdenv;
   };
+  thrift = super.thrift.override {
+    static = true;
+    twisted = null;
+  };
   gmp = super.gmp.override {
     withStatic = true;
+  };
+  gflags = super.gflags.override {
+    enableShared = false;
   };
   cdo = super.cdo.override {
     enable_all_static = true;
@@ -191,6 +203,12 @@ in {
     # Don’t use new stdenv zlib because
     # it doesn’t like the --disable-shared flag
     stdenv = super.stdenv;
+  };
+  woff2 = super.woff2.override {
+    static = true;
+  };
+  snappy = super.snappy.override {
+    static = true;
   };
   lz4 = super.lz4.override {
     enableShared = false;
@@ -224,6 +242,10 @@ in {
     staticOnly = true;
   };
 
+  zstd = super.zstd.override {
+    enableShared = false;
+  };
+
   llvmPackages_8 = super.llvmPackages_8 // {
     libraries = super.llvmPackages_8.libraries // rec {
       libcxxabi = super.llvmPackages_8.libraries.libcxxabi.override {
@@ -244,4 +266,13 @@ in {
   ) super.ocaml-ng;
 
   python27 = super.python27.override { static = true; };
+  python35 = super.python35.override { static = true; };
+  python36 = super.python36.override { static = true; };
+  python37 = super.python37.override { static = true; };
+  python38 = super.python38.override { static = true; };
+  python39 = super.python39.override { static = true; };
+  python3Minimal = super.python3Minimal.override { static = true; };
+
+
+  libev = super.libev.override { static = true; };
 }

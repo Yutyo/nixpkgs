@@ -29,11 +29,11 @@
 # handle that.
 
 mkDerivation rec {
-  name = "qmmp-1.3.5";
+  name = "qmmp-1.3.7";
 
   src = fetchurl {
     url = "http://qmmp.ylsoftware.com/files/${name}.tar.bz2";
-    sha256 = "0h7kcqzhfvk610937pwrhizcdgd4n7ncl1vayv6sj3va1x7pv6xm";
+    sha256 = "13mk8p7bfl3fkavpqyhpcxkxb8a4f5d4qc1lasyf7wls3ghrdag7";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
@@ -55,10 +55,10 @@ mkDerivation rec {
 
   meta = with stdenv.lib; {
     description = "Qt-based audio player that looks like Winamp";
-    homepage = http://qmmp.ylsoftware.com/;
+    homepage = "http://qmmp.ylsoftware.com/";
     license = licenses.gpl2;
     platforms = platforms.linux;
     maintainers = [ maintainers.bjornfor ];
-    repositories.svn = http://qmmp.googlecode.com/svn/;
+    repositories.svn = "http://qmmp.googlecode.com/svn/";
   };
 }

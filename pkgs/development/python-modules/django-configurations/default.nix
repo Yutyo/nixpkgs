@@ -9,6 +9,7 @@
 , django-cache-url
 , six
 , django
+, setuptools_scm
 }:
 
 buildPythonPackage rec {
@@ -20,7 +21,9 @@ buildPythonPackage rec {
     sha256 = "9e3bcea1355ac50a4c9f854f751d214cb17e5f8adf18405a4488d0a1e8945915";
   };
 
-  checkInputs = [ django-discover-runner mock dj-database-url dj-email-url dj-search-url django-cache-url six ];
+  buildInputs = [ setuptools_scm ];
+  propagatedBuildInputs = [ six ];
+  checkInputs = [ django-discover-runner mock dj-database-url dj-email-url dj-search-url django-cache-url ];
 
   checkPhase = ''
     export PYTHONPATH=.:$PYTHONPATH
@@ -33,7 +36,7 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with stdenv.lib; {
-    homepage = https://django-configurations.readthedocs.io/;
+    homepage = "https://django-configurations.readthedocs.io/";
     description = "A helper for organizing Django settings";
     license = licenses.bsd0;
     maintainers = [ maintainers.costrouc ];

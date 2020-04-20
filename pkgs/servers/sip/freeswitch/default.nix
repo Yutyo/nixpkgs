@@ -111,6 +111,8 @@ stdenv.mkDerivation rec {
   ++ lib.unique (lib.concatMap (mod: mod.inputs) enabledModules)
   ++ lib.optionals stdenv.isDarwin [ SystemConfiguration ];
 
+  enableParallelBuilding = true;
+
   NIX_CFLAGS_COMPILE = "-Wno-error";
 
   hardeningDisable = [ "format" ];
@@ -123,11 +125,13 @@ stdenv.mkDerivation rec {
   postInstall = ''
     # helper for compiling modules... not generally useful; also pulls in perl dependency
     rm "$out"/bin/fsxs
+    # include configuration templates
+    cp -r conf $out/share/freeswitch/
   '';
 
   meta = {
     description = "Cross-Platform Scalable FREE Multi-Protocol Soft Switch";
-    homepage = https://freeswitch.org/;
+    homepage = "https://freeswitch.org/";
     license = stdenv.lib.licenses.mpl11;
     maintainers = with stdenv.lib.maintainers; [ misuzu ];
     platforms = with stdenv.lib.platforms; unix;

@@ -5,7 +5,7 @@ stdenv.mkDerivation rec {
   version = "1.16.0";
 
   src = fetchurl {
-    url = "http://lv2plug.in/spec/${pname}-${version}.tar.bz2";
+    url = "https://lv2plug.in/spec/${pname}-${version}.tar.bz2";
     sha256 = "1ppippbpdpv13ibs06b0bixnazwfhiw0d0ja6hx42jnkgdyp5hyy";
   };
 
@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ gtk2 libsndfile python3 ];
 
   meta = with stdenv.lib; {
-    homepage = http://lv2plug.in;
+    homepage = "http://lv2plug.in";
     description = "A plugin standard for audio systems";
     license = licenses.mit;
     maintainers = [ maintainers.goibhniu ];

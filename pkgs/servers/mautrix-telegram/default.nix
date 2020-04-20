@@ -1,24 +1,16 @@
-{ lib, python3, mautrix-telegram, fetchpatch }:
+{ lib, python3, mautrix-telegram }:
 
 with python3.pkgs;
 
 buildPythonPackage rec {
   pname = "mautrix-telegram";
-  version = "0.7.0";
+  version = "0.7.2";
   disabled = pythonOlder "3.6";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "0xzivcn1s5j2nn9p7li9bzr0h225bnli4fr3yrh8v7npx2ymg1r3";
+    sha256 = "1ahchkhrhyd160fwlg6g0d2v8v56j9f3h9rnm71nxibgfjcb6m3n";
   };
-
-  patches = [
-    # fix tests
-    (fetchpatch {
-      url = "https://github.com/tulir/mautrix-telegram/commit/fe52f0ad106122f08af72e356c4c62bb8875b453.patch";
-      sha256 = "0r7j7q78brqqx0rkchld328k00yq0ykdk7syvwpihqzj3gchacb7";
-    })
-  ];
 
   postPatch = ''
     sed -i -e '/alembic>/d' setup.py
@@ -62,7 +54,7 @@ buildPythonPackage rec {
   ];
 
   meta = with lib; {
-    homepage = https://github.com/tulir/mautrix-telegram;
+    homepage = "https://github.com/tulir/mautrix-telegram";
     description = "A Matrix-Telegram hybrid puppeting/relaybot bridge";
     license = licenses.agpl3Plus;
     platforms = platforms.linux;

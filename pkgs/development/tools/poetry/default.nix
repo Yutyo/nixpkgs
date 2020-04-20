@@ -1,5 +1,6 @@
 { lib, poetry2nix, python, fetchFromGitHub, runtimeShell }:
 
+
 poetry2nix.mkPoetryApplication {
 
   inherit python;
@@ -7,50 +8,13 @@ poetry2nix.mkPoetryApplication {
   pyproject = ./pyproject.toml;
   poetrylock = ./poetry.lock;
 
-  src = fetchFromGitHub {
-    owner = "sdispater";
-    repo = "poetry";
-    rev = "1.0.0";
-    sha256 = "05xlx9wnlrsjj3i4wawnvxadvqwsdh03401wpgingkbq0c50aimi";
-  };
+  src = fetchFromGitHub (lib.importJSON ./src.json);
 
   # "Vendor" dependencies (for build-system support)
   postPatch = ''
     for path in ''${PYTHONPATH//:/ }; do
       echo "sys.path.insert(0, \"$path\")" >> poetry/__init__.py
     done
-  '';
-
-  # Poetry is a bit special in that it can't use itself as the `build-system` property in pyproject.toml.
-  # That's why we need to hackily install outputs completely manually.
-  #
-  # For projects using poetry normally overriding the installPhase is not required.
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/lib/${python.libPrefix}/site-packages
-    cp -r poetry $out/lib/${python.libPrefix}/site-packages
-
-    mkdir -p $out/bin
-    cat > $out/bin/poetry <<EOF
-    #!${python.interpreter}
-    import sys
-
-    if __name__ == '__main__':
-        sys.path.append("$out/lib/${python.libPrefix}/site-packages")
-        from poetry.console import main
-        main()
-    EOF
-    chmod +x $out/bin/poetry
-
-    mkdir -p "$out/share/bash-completion/completions"
-    "$out/bin/poetry" completions bash > "$out/share/bash-completion/completions/poetry"
-    mkdir -p "$out/share/zsh/vendor-completions"
-    "$out/bin/poetry" completions zsh > "$out/share/zsh/vendor-completions/_poetry"
-    mkdir -p "$out/share/fish/vendor_completions.d"
-    "$out/bin/poetry" completions fish > "$out/share/fish/vendor_completions.d/poetry.fish"
-
-    runHook postInstall
   '';
 
   # Propagating dependencies leads to issues downstream

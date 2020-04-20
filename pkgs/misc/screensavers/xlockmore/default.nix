@@ -2,11 +2,11 @@
 , libXdmcp, libXt }:
 
 stdenv.mkDerivation rec {
-  name = "xlockmore-5.61";
+  name = "xlockmore-5.62";
 
   src = fetchurl {
     url = "http://sillycycle.com/xlock/${name}.tar.xz";
-    sha256 = "012wsfcphahwwylyfk9c848nwj1v08hpnja2yfs0j8pnq7milnva";
+    sha256 = "0b05wgj4mpssy4hd7km5c48i454dfg45p11mfmsr7xjd2gnz5gqi";
     curlOpts = "--user-agent 'Mozilla/5.0'";
   };
 
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Screen locker for the X Window System";
-    homepage = http://sillycycle.com/xlockmore.html;
+    homepage = "http://sillycycle.com/xlockmore.html";
     license = licenses.gpl2;
     maintainers = with maintainers; [ pSub ];
     platforms = platforms.linux;

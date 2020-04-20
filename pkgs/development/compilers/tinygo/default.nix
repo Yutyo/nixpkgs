@@ -3,16 +3,16 @@
 
 buildGoModule rec {
   pname = "tinygo";
-  version = "0.10.0";
+  version = "0.13.0";
 
   src = fetchFromGitHub {
     owner = "tinygo-org";
     repo = "tinygo";
     rev = "v${version}";
-    sha256 = "03di8500dqk25giiajglcdf2gbc0jidsn8qsw2sxmkmnd1np7gyd";
+    sha256 = "0x59j56y704m2hfkg78illgw9f6czrx265x887jfd989lnxphyqa";
   };
 
-  modSha256 = "0r3lfi1bj550sf3b7ysz62c2c33f8zfli8208xixj3jadycb6r3z";
+  modSha256 = "0y8n4mcr4jhas29ahvk8k4zbj1iz65fdpsgq61qa8kcsm8m5kqa6";
   enableParallelBuilding = true;
   subPackages = [ "." ];
   buildInputs = [ llvm clang-unwrapped makeWrapper ];

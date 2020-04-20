@@ -19,12 +19,12 @@ stdenv.mkDerivation rec {
           + lib.optionalString useNcurses "-cursesUI"
           + lib.optionalString withQt5 "-qt5UI"
           + lib.optionalString useQt4 "-qt4UI";
-  version = "3.16.2";
+  version = "3.17.0";
 
   src = fetchurl {
     url = "${meta.homepage}files/v${lib.versions.majorMinor version}/cmake-${version}.tar.gz";
     # compare with https://cmake.org/files/v${lib.versions.majorMinor version}/cmake-${version}-SHA-256.txt
-    sha256 = "1ag65ignli58kpmji6gjhj8xw4w1qdr910i99hsvx8hcqrp7h2cc";
+    sha256 = "0iq8y1rb5dqnzrwy4lssr76hbnnvh54q2ympl97wrshma6shak5p";
   };
 
   patches = [
@@ -103,7 +103,7 @@ stdenv.mkDerivation rec {
   doCheck = false; # fails
 
   meta = with lib; {
-    homepage = http://www.cmake.org/;
+    homepage = "http://www.cmake.org/";
     description = "Cross-Platform Makefile Generator";
     platforms = if useQt4 then qt4.meta.platforms else platforms.all;
     maintainers = with maintainers; [ ttuegel lnl7 ];

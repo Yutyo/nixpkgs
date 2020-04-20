@@ -32,11 +32,11 @@
 
 buildPythonPackage rec {
   pname = "sphinx";
-  version = "2.2.2";
+  version = "2.3.1";
   src = fetchPypi {
     pname = "Sphinx";
     inherit version;
-    sha256 = "1wjcm382824rq8ijls9mlqwl2h8l26s201v5fwprhnins671m72m";
+    sha256 = "19a28nsb0w4bs6k8rdfyk6vzrcwdpvhs2wq77rgpmww59yvndrz6";
   };
   LC_ALL = "en_US.UTF-8";
 
@@ -78,7 +78,7 @@ buildPythonPackage rec {
 
   meta = {
     description = "A tool that makes it easy to create intelligent and beautiful documentation for Python projects";
-    homepage = http://sphinx.pocoo.org/;
+    homepage = "http://sphinx.pocoo.org/";
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ nand0p ];
   };

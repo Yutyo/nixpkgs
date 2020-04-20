@@ -10,12 +10,12 @@
 
 buildPythonPackage rec {
   pname = "zeroconf";
-  version = "0.24.3";
+  version = "0.24.5";
   disabled = isPy27;
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "de62e5067ea7ab356f7168a3562d79fececa8632ed0fad0e82f505e01fafbc6d";
+    sha256 = "0jpgd0rk91si93857mjrizan5gc42kj1q4fi4160qgk68la88fl9";
   };
 
   propagatedBuildInputs = [ ifaddr ]
@@ -30,7 +30,7 @@ buildPythonPackage rec {
 
   meta = with stdenv.lib; {
     description = "A pure python implementation of multicast DNS service discovery";
-    homepage = https://github.com/jstasiak/python-zeroconf;
+    homepage = "https://github.com/jstasiak/python-zeroconf";
     license = licenses.lgpl21;
     maintainers = with maintainers; [ abbradar ];
   };

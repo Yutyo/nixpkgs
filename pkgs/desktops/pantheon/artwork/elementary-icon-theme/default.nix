@@ -6,11 +6,13 @@
 , ninja
 , hicolor-icon-theme
 , gtk3
+, inkscape
+, xorg
 }:
 
 stdenv.mkDerivation rec {
   pname = "elementary-icon-theme";
-  version = "5.1.0";
+  version = "5.2.0";
 
   repoName = "icons";
 
@@ -18,7 +20,7 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "1yrf92ysjh1yfm42wznlw0lh9zsm5whghwzx3b3wcdkwdhkdg24z";
+    sha256 = "1irkjj8xfpgkl5p56xhqa3w2s98b8lav7d1lxxrabdi87cjv3n33";
   };
 
   passthru = {
@@ -29,9 +31,11 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     gtk3
+    inkscape
     meson
     ninja
     python3
+    xorg.xcursorgen
   ];
 
   propagatedBuildInputs = [
@@ -57,7 +61,7 @@ stdenv.mkDerivation rec {
     longDescription = ''
       An original set of vector icons designed specifically for elementary OS and its desktop environment: Pantheon.
     '';
-    homepage = https://github.com/elementary/icons;
+    homepage = "https://github.com/elementary/icons";
     license = licenses.gpl3;
     platforms = platforms.linux;
     maintainers = pantheon.maintainers;

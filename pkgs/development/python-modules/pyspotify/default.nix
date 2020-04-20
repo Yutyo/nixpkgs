@@ -7,11 +7,11 @@
 
 buildPythonPackage rec {
   pname = "pyspotify";
-  version = "2.1.2";
+  version = "2.1.3";
 
   src = fetchurl {
     url = "https://github.com/mopidy/pyspotify/archive/v${version}.tar.gz";
-    sha256 = "0g3dvwpaz7pqrdx53kyzkh31arlmdzz1hb7jp8m488lbsf47w6nd";
+    sha256 = "1y1zqkqi9jz5m9bb2z7wmax7g40c1snm3c6di6b63726qrf26rb7";
   };
 
   propagatedBuildInputs = [ cffi ];
@@ -34,7 +34,7 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with stdenv.lib; {
-    homepage    = http://pyspotify.mopidy.com;
+    homepage    = "http://pyspotify.mopidy.com";
     description = "A Python interface to Spotify’s online music streaming service";
     license     = licenses.unfree;
     maintainers = with maintainers; [ lovek323 ];

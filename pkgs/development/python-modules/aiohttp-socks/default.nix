@@ -2,12 +2,12 @@
 
 buildPythonPackage rec {
   pname = "aiohttp-socks";
-  version = "0.3.3";
+  version = "0.3.7";
 
   src = fetchPypi {
     inherit version;
     pname = "aiohttp_socks";
-    sha256 = "21974ce5d782c426ddbf7bdfc5e602a38783b1ee839a4a0ed0990240e2e123b5";
+    sha256 = "00zqlkhfrp1jczgjppaksriidyfshnj0jvrcryn1x77dmy73m023";
   };
 
   propagatedBuildInputs = [ aiohttp attrs ];
@@ -20,6 +20,6 @@ buildPythonPackage rec {
   meta = {
     description = "SOCKS proxy connector for aiohttp";
     license = lib.licenses.asl20;
-    homepage = https://github.com/romis2012/aiohttp-socks;
+    homepage = "https://github.com/romis2012/aiohttp-socks";
   };
 }

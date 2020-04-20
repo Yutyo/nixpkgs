@@ -33,8 +33,8 @@ python3.pkgs.buildPythonApplication rec {
   '';
 
   meta = with lib; {
-    description = "Command-line tool for Home Asssistant";
-    homepage = https://github.com/home-assistant/home-assistant-cli;
+    description = "Command-line tool for Home Assistant";
+    homepage = "https://github.com/home-assistant/home-assistant-cli";
     license = licenses.asl20;
     maintainers = with maintainers; [ dotlambda ];
   };

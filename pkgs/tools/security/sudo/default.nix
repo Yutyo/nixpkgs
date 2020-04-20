@@ -6,11 +6,11 @@
 
 stdenv.mkDerivation rec {
   pname = "sudo";
-  version = "1.8.30";
+  version = "1.8.31p1";
 
   src = fetchurl {
-    url = "ftp://ftp.sudo.ws/pub/sudo/${pname}-${version}.tar.gz";
-    sha256 = "1rvrqlqrrjsd06dczgj9cwjdkpkqil5zzlwh87h06ms6qzfx6nm3";
+    url = "https://www.sudo.ws/dist/${pname}-${version}.tar.gz";
+    sha256 = "1n0mdmgcs92af34xxsnsh1arrngymhdmwd9srjgjbk65q7xzsg67";
   };
 
   prePatch = ''
@@ -72,9 +72,9 @@ stdenv.mkDerivation rec {
       providing an audit trail of the commands and their arguments.
       '';
 
-    homepage = https://www.sudo.ws/;
+    homepage = "https://www.sudo.ws/";
 
-    license = https://www.sudo.ws/sudo/license.html;
+    license = "https://www.sudo.ws/sudo/license.html";
 
     maintainers = [ stdenv.lib.maintainers.eelco ];
 

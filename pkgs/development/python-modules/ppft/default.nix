@@ -1,6 +1,7 @@
 { stdenv
 , buildPythonPackage
 , fetchPypi
+, python
 , six
 }:
 
@@ -15,12 +16,16 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [ six ];
 
-  # tests no longer packages on pypi
-  doCheck = false;
+  # darwin seems to hang
+  doCheck = !stdenv.isDarwin;
+  checkPhase = ''
+    cd examples
+    ${python.interpreter} -m ppft.tests
+  '';
 
   meta = with stdenv.lib; {
     description = "Distributed and parallel python";
-    homepage = https://github.com/uqfoundation;
+    homepage = "https://github.com/uqfoundation";
     license = licenses.bsd3;
   };
 

@@ -125,7 +125,7 @@ stdenv.mkDerivation rec {
       ];
 
   preConfigure = ''
-    export LD_LIBRARY_PATH="`pwd`/lib:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="`pwd`/lib''${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
     configureFlags+="
       -docdir $out/share/doc/${name}
       -plugindir $out/lib/qt4/plugins
@@ -237,7 +237,7 @@ stdenv.mkDerivation rec {
   dontStrip = stdenv.hostPlatform != stdenv.buildPlatform;
 
   meta = {
-    homepage    = http://qt-project.org/;
+    homepage    = "http://qt-project.org/";
     description = "A cross-platform application framework for C++";
     license     = lib.licenses.lgpl21Plus; # or gpl3
     maintainers = with lib.maintainers; [ orivej lovek323 phreedom sander ];
